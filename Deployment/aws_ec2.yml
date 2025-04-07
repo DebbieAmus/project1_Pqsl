@@ -1,0 +1,11 @@
+plugin: amazon.aws.aws_ec2
+aws_profile: default
+
+hostnames:
+ -ip-adress
+
+
+groups:
+    ubuntu: -'ubuntu' in tags.os"
+    amazon: -'amazon' in tags.os"
+    centos: -'centos' in tags.OS"
