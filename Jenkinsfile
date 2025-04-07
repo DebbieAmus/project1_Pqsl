@@ -41,15 +41,12 @@ pipeline {
             steps {
                 sh'''
                 # Ensure we are in the correct directory for Ansible
-                Cd Workspace
+                cd deployment
                 
                 # Run the Ansible playbook
                 ansible-playbook -i was_ec2.yml playbook.yml
                 '''
             }
         }
-    }
-}
-
     }
 }
