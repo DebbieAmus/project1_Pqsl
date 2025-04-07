@@ -1,6 +1,8 @@
 pipeline {
     agent {label 'node1'}
     environment{ARCHIVE_NAMES="${env.BUILD_TAG}.tar.gz"
+    BUCKET_NAME="project-ay1"
+
     }
 
     stages {
@@ -12,8 +14,8 @@ pipeline {
                 . venv/bin/activate
 
                 touch ${ARCHIVE_NAMES}
+
                 tar --exclude=${ARCHIVE_NAMES} -czvf ${ARCHIVE_NAMES} .
-                tar -czvf ${BUILD_TAG}.tar.gz.
                 '''
             }
                 
@@ -22,6 +24,8 @@ pipeline {
         }
         stage('Upload Artifact') {
             steps {
+                sh'''
+                aws s3 cp ${ARCHIVE_NAMES} ${BUCKET_NAME}
                 echo 'Uploading Artifact..'
             }
         }
