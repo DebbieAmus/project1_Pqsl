@@ -1,7 +1,7 @@
 - include_role:
-  name: update_cache
+    name: update_cache
 
-  -name:install python (ubuntu)
+- name: install python (ubuntu)
   apt:
     name: python
     state: present
