@@ -30,7 +30,7 @@ pipeline {
                 script {
                     sh '''
                     # Upload the tarball to the S3 bucket
-                    aws s3 cp ${ARCHIVE_NAMES} s3://project-ay1/jenkins-Project1-18.tar.gz
+                    aws s3 cp ${ARCHIVE_NAMES} s3://${BUCKET_NAME}/jenkins-${ARCHIVE_NAMES}
                     echo "Uploading Artifact to S3..."
                     '''
                 }
@@ -40,12 +40,16 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh'''
-                cd deployment
+                # Ensure we are in the correct directory for Ansible
+                cd /home/ubuntu/workspace
                 
+                # Run the Ansible playbook
                 ansible-playbook -i was_ec2.yml playbook.yml
                 '''
-                
             }
         }
+    }
+}
+
     }
 }
