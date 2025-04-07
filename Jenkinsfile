@@ -30,7 +30,7 @@ pipeline {
                 script {
                     sh '''
                     # Upload the tarball to the S3 bucket
-                    aws s3 cp ${ARCHIVE_NAMES} s3://${BUCKET_NAME}/
+                    aws s3 cp ${ARCHIVE_NAMES} s3://project-ay1/jenkins-Project1-18.tar.gz
                     echo "Uploading Artifact to S3..."
                     '''
                 }
