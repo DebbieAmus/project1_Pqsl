@@ -1,4 +1,4 @@
-plugin: amazon.aws.aws_ec2
+plugin: /etc/ansible/hosts
 aws_profile: default
 
 hostnames:
