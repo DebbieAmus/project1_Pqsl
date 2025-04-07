@@ -1,15 +1,22 @@
 pipeline {
     agent {label 'node1'}
+    environment{ARCHIVE_NAME="${env.BUILD_TAG}.tar.gz"
+    }
 
     stages {
         stage('Build') {
             steps {
-                sh'''
+                script{  sh'''
                 python3 -m venv venv
 
                 . venv/bin/activate
 
+                touch ${ARCHIVE_NAME}
+                tar --exclude=${ARCHIVE_NAME} -czvf ${ARCHIVE_NAME} .
+                tar -czvf ${BUILD_TAG}.tar.gz.
                 '''
+                }
+                
                 
             }
         }
