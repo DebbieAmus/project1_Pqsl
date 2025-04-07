@@ -1,6 +1,6 @@
 pipeline {
     agent {label 'node1'}
-    environment{ARCHIVE_NAME="${env.BUILD_TAG}.tar.gz"
+    environment{ARCHIVE_NAMES="${env.BUILD_TAG}.tar.gz"
     }
 
     stages {
@@ -11,11 +11,11 @@ pipeline {
 
                 . venv/bin/activate
 
-                touch ${ARCHIVE_NAME}
-                tar --exclude=${ARCHIVE_NAME} -czvf ${ARCHIVE_NAME} .
+                touch ${ARCHIVE_NAMES}
+                tar --exclude=${ARCHIVE_NAMES} -czvf ${ARCHIVE_NAMES} .
                 tar -czvf ${BUILD_TAG}.tar.gz.
                 '''
-                }
+            }
                 
                 
             }
