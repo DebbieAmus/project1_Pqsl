@@ -9,7 +9,6 @@ pipeline {
 
                 . venv/bin/activate
 
-                pip install -r requirement.txt
                 '''
                 
             }
