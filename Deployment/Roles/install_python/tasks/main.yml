@@ -1,0 +1,14 @@
+- include_role:
+  name: update_cache
+
+  -name:install python (ubuntu)
+  apt:
+    name: python
+    state: present
+  when: ansible_distribution == "ubuntu"
+
+  -name: install python (Amazon|CentOs)
+  apt:
+    name: python
+    state: present
+  when: ansible_distribution == "Amazon" or ansible_distribution == "CentOs"

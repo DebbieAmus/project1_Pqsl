@@ -1,0 +1,9 @@
+- name: Update Apt Cache (Ubuntu)
+  apt:
+  update_cache: yes
+  when: ansible_distribution == "Ubuntu
+
+- name: Update Yum Cache (Amazon|Redhat|Centos)
+  yum:
+    update_cache: yes
+  when: ansible_distribution =="Amazon" or ansible_distribution =="Centos

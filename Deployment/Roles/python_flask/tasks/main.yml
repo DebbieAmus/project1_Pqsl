@@ -8,3 +8,4 @@
 - name: Install Flask
   pip:
     name: Flask
+    state: present

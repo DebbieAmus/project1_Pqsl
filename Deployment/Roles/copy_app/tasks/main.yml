@@ -1,10 +1,24 @@
-- name: Copy application files
-  copy:
-    src: "/tmp/flask-app.tar.gz"
-    dest: "/home/centos/flask-app.tar.gz"
+- name: Get Artifict From S3 Bucket
+  amazon.aws.S3_object: 
+    bucket: '{{BUCKET_NAME}}
+    object: '{{ARCHIVE_NAMES}}
+    dest: /tmp/{{ARCHIVE_NAMES}}
+    mode: get
+    delegate_to: localhost
+    become: false
 
-- name: Extract application
+    name: Create Flask App Directory
+    file:
+      path: /opt/flask-app
+      state: directory
+
+- name: Copy Artifact To the Servers
+  copy:
+    src: /tmp/{{ARCHIVE_NAMES}}
+    dest: /opt/flask-app/app.tar.gz
+
+- name: Unzip Artifact
   unarchive:
-    src: "/home/centos/flask-app.tar.gz"
-    dest: "/home/centos/"
+    src: /opt/flask-app/app.tar.gz
+    dest: /opt/flask-app
     remote_src: yes
