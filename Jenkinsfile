@@ -41,7 +41,7 @@ pipeline {
             steps {
                 sh'''
                 # Ensure we are in the correct directory for Ansible
-                cd /home/ubuntu/workspace
+                Cd Workspace
                 
                 # Run the Ansible playbook
                 ansible-playbook -i was_ec2.yml playbook.yml
