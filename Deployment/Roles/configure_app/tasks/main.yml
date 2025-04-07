@@ -1,0 +1,8 @@
+- name: Set Environment Variables
+  copy:
+    dest: /etc/profile.d/flask_env.sh
+    content: |
+      export DB_HOST=<POSTGRES_EC2_PRIVATE_IP>
+      export DB_NAME=mydb
+      export DB_USER=myuser
+      export DB_PASS=mypassword

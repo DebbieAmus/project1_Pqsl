@@ -1,0 +1,10 @@
+---
+- name: Deploy Flask App and PostgreSQL
+  hosts: app
+  become: true
+
+  roles:
+    - python_flask
+    - postgresql
+    - copy_app
+    - configure_app

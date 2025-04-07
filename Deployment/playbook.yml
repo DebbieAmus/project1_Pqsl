@@ -1,0 +1,9 @@
+name: Application Deployment
+hosts: ubuntu, redhat ,centos
+become:true
+roles:
+  -install_python
+  -install_PostgreSQL
+  -install_flask
+  -copy_app
+  -connect_app

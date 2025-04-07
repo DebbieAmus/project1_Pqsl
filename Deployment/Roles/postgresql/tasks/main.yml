@@ -1,0 +1,23 @@
+- name: Install PostgreSQL
+  yum:
+    name: postgresql-server
+  become: true
+
+- name: Initialize and start PostgreSQL
+  shell: |
+    postgresql-setup initdb
+    systemctl enable postgresql
+    systemctl start postgresql
+
+- name: Create Database
+  become_user: postgres
+  postgresql_db:
+    name: mydb
+
+- name: Create User
+  become_user: postgres
+  postgresql_user:
+    name: myuser
+    password: mypassword
+    db: mydb
+    priv: ALL

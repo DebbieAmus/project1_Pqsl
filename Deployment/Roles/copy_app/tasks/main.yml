@@ -1,0 +1,10 @@
+- name: Copy application files
+  copy:
+    src: "/tmp/flask-app.tar.gz"
+    dest: "/home/centos/flask-app.tar.gz"
+
+- name: Extract application
+  unarchive:
+    src: "/home/centos/flask-app.tar.gz"
+    dest: "/home/centos/"
+    remote_src: yes
